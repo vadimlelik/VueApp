@@ -4,10 +4,15 @@
     <button class="btn" @click="open">
       {{ isNewOpen ? "closed" : "open" }}
     </button>
-    <p v-if="isNewOpen">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit,
-      voluptates.
-    </p>
+    <div v-if="isNewOpen">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit,
+        voluptates.
+      </p>
+      <button v-if="!wasRead" class="btn btn-primary" @click="isRead">
+        Read News
+      </button>
+    </div>
   </div>
 </template>
 
@@ -17,6 +22,7 @@ export default {
     title: String,
     id: Number,
     isOpen: Boolean,
+    wasRead: Boolean,
   },
   data() {
     return {
@@ -29,6 +35,10 @@ export default {
       if (this.isNewOpen) {
         this.$emit("open-news");
       }
+    },
+    isRead() {
+      this.isNewOpen = false;
+      this.$emit("read-news", this.id);
     },
   },
 };
