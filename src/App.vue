@@ -3,6 +3,7 @@
     <div class="container pt-1">
       <div class="card">
         <h2>Актуальные новости | {{ date }}</h2>
+        <span>Открыто раз | {{ openRate }}</span>
       </div>
       <app-news
         v-for="item in news"
@@ -10,6 +11,7 @@
         :title="item.title"
         :id="item.id"
         :isOpen="item.isOpen"
+        v-on:open-news="changeRate"
       ></app-news>
     </div>
   </div>
@@ -28,7 +30,13 @@ export default {
         { title: "Вторая новость ", id: 2, isOpen: false },
         { title: "React лучше чем VUE", id: 3, isOpen: false },
       ],
+      openRate: 0,
     };
+  },
+  methods: {
+    changeRate() {
+      this.openRate++;
+    },
   },
   components: {
     "app-news": AppNews,

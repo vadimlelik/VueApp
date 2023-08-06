@@ -1,8 +1,10 @@
 <template>
   <div class="card">
     <h3>{{ title }}</h3>
-    <button class="btn" @click="isOpen = !isOpen">Open</button>
-    <p v-if="isOpen">
+    <button class="btn" @click="open">
+      {{ isNewOpen ? "closed" : "open" }}
+    </button>
+    <p v-if="isNewOpen">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit,
       voluptates.
     </p>
@@ -17,7 +19,17 @@ export default {
     isOpen: Boolean,
   },
   data() {
-    return {};
+    return {
+      isNewOpen: this.isOpen,
+    };
+  },
+  methods: {
+    open() {
+      this.isNewOpen = !this.isNewOpen;
+      if (this.isNewOpen) {
+        this.$emit("open-news");
+      }
+    },
   },
 };
 </script>
