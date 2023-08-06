@@ -1,18 +1,23 @@
 <template>
   <div class="card">
-    <h3> {{ title }} </h3>
+    <h3>{{ title }}</h3>
     <button class="btn" @click="isOpen = !isOpen">Open</button>
-    <p v-if="isOpen">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, voluptates.</p>
+    <p v-if="isOpen">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit,
+      voluptates.
+    </p>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['title'],
+  props: {
+    title: String,
+    id: Number,
+    isOpen: Boolean,
+  },
   data() {
-    return {
-      isOpen: false
-    }
-  }
-}
+    return {};
+  },
+};
 </script>
