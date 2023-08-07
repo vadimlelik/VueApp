@@ -47,6 +47,11 @@ export default {
       openRate: 0,
     };
   },
+  provide() {
+    return {
+      lists: ["просто текст", "второй просто текст "],
+    };
+  },
   methods: {
     changeRate() {
       this.openRate++;

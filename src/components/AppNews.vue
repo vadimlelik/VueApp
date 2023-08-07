@@ -16,12 +16,14 @@
       <app-button v-if="wasRead" color="danger" @action="reset">
         Отменить прочтение
       </app-button>
+      <app-news-list></app-news-list>
     </div>
   </div>
 </template>
 
 <script>
 import AppButton from "./AppButton.vue";
+import AppNewsList from "./AppNewsList.vue";
 export default {
   props: {
     title: String,
@@ -51,6 +53,7 @@ export default {
   },
   components: {
     AppButton,
+    AppNewsList,
   },
 };
 </script>
