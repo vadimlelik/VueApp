@@ -1,22 +1,27 @@
 <template>
   <div class="card">
     <h3>{{ title }}</h3>
-    <button class="btn" @click="open">
+    <app-button @action="open">
       {{ isNewOpen ? "closed" : "open" }}
-    </button>
+    </app-button>
+
     <div v-if="isNewOpen">
       <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit,
         voluptates.
       </p>
-      <button v-if="!wasRead" class="btn btn-primary" @click="isRead">
+      <app-button v-if="!wasRead" color="primary" @action="isRead">
         Read News
-      </button>
+      </app-button>
+      <app-button v-if="wasRead" color="danger" @action="reset">
+        Отменить прочтение
+      </app-button>
     </div>
   </div>
 </template>
 
 <script>
+import AppButton from "./AppButton.vue";
 export default {
   props: {
     title: String,
@@ -40,6 +45,12 @@ export default {
       this.isNewOpen = false;
       this.$emit("read-news", this.id);
     },
+    reset() {
+      this.$emit("reset-news", this.id);
+    },
+  },
+  components: {
+    AppButton,
   },
 };
 </script>

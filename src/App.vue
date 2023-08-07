@@ -17,6 +17,7 @@
         :wasRead="item.wasRead"
         v-on:open-news="changeRate"
         @read-news="readNews"
+        @reset-news="resetNews"
       ></app-news>
     </div>
   </div>
@@ -54,6 +55,13 @@ export default {
       const indexNews = this.news.findIndex((item) => item.id === id);
       this.news[indexNews].wasRead = true;
       this.readRate++;
+    },
+    resetNews(id) {
+      console.log(id, "id");
+
+      const indexNews = this.news.findIndex((item) => item.id === id);
+      this.news[indexNews].wasRead = false;
+      this.readRate--;
     },
   },
   components: {
